@@ -84,6 +84,36 @@ fn main() {
 // Only modify the code below!
 fn give_ownership() -> String {
     let s = String::from("hello, world");
+    // convert String to Vec
+    let _s = s.as_bytes();
+    s
+}
+```
+
+```rust
+fn main() {
+    let s = give_ownership();
+    println!("{}", s);
+}
+
+// Only modify the code below!
+fn give_ownership() -> String {
+    let s = String::from("hello, world");
+    // convert String to Vec
+    let _s = s.clone().into_bytes();
+    s
+}
+```
+
+```rust
+fn main() {
+    let s = give_ownership();
+    println!("{}", s);
+}
+
+// Only modify the code below!
+fn give_ownership() -> String {
+    let s = String::from("hello, world");
     s
 }
 ```
@@ -112,6 +142,18 @@ fn print_str(s: String)  {
  }
  fn print_str(s: &String)  {
      println!("{}",s)
+ }
+```
+
+```rust
+ fn main() {
+     let mut s = String::from("hello, world");
+     s=print_str(s);
+     println!("{}", s);
+ }
+ fn print_str(s: &String)  {
+     println!("{}",s);
+     s
  }
 ```
 
@@ -152,6 +194,19 @@ fn main() {
 }
 ```
 
+```rust
+fn main() {
+    let x = Box::new(5);
+    
+    let mut y = x.clone();       // implement this line, dont change other lines!
+    //cannot be `let mut y=&x`,thus y is a pointer to a Box(a pointer to a i32)
+    
+    *y = 4;
+    
+    assert_eq!(*x, 5);
+}
+```
+
 8.
 
 ```rust
@@ -176,4 +231,16 @@ fn main() {
 
     println!("{:?}, {:?}, {:?}", s1, s2, t); // -> "hello", "world", ("hello", "world")
 }
+```
+
+```rust
+
+fn main() {
+   let t = (String::from("hello"), String::from("world"));
+
+   let (ref s1, ref s2) = t;
+
+   println!("{:?}, {:?}, {:?}", s1, s2, t); // -> "hello", "world", ("hello", "world")
+}
+
 ```
